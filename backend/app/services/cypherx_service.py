@@ -1,0 +1,28 @@
+import os
+import json
+from datetime import datetime, timedelta
+from typing import Dict, Any, List, Optional
+
+DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "cypherx_briefing.json")
+
+def load_verbatim_text() -> Dict[str, Any]:
+    if os.path.exists(DATA_PATH):
+        with open(DATA_PATH, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {
+        "challenges": [
+            {"title": "too much activity", "text": "Thousands of login attempts, file accesses, and data transfers make suspicious actions difficult to identify."},
+            {"title": "limited behavioral context", "text": "Traditional tools often analyze events individually, missing patterns that reveal unusual user behavior."},
+            {"title": "difficult risk prioritization", "text": "Security teams struggle to identify which threats require immediate attention."}
+        ],
+        "who": "SOC analysts, security administrators, and IT security teams",
+        "what": "an intelligent system that continuously monitors user activity, learns normal behavior, detects anomalies, and prioritizes threats based on risk.",
+        "solution": "By combining User Behavior Analytics, Isolation Forest machine learning, and a hybrid risk-scoring engine, CypherX identifies suspicious activity across Windows and Linux systems and generates risk-based alerts through a centralized dashboard.",
+        "simulation_scenario": "an employee whose account is being used to access an unusually large number of files and transfer data to a USB device.",
+        "anomaly_note": "an anomaly alone doesn't automatically mean malicious activity.",
+        "anomaly_explanation": "it helps identify behavior that stands out from the expected pattern, without requiring a large collection of labeled insider-threat examples.",
+        "risk_explanation": "unusual file-access activity combined with suspicious USB usage and large data transfers can increase a user's risk score.",
+        "prioritization": "rather than treating every event equally, CypherX helps analysts prioritize the activity that deserves closer investigation.",
+        "investigation": "By reviewing the available behavioral metrics and supporting events, the analyst can understand what triggered the alert and determine whether the activity requires further investigation.",
+        "closing": "CypherX transforms raw security data into actionable intelligence, helping organizations identify potential insider threats before they lead to serious data breaches."
+    }
